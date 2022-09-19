@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "s21_matrix.h": "c",
+        "__locale": "c",
+        "functional": "c",
+        "string.h": "c",
+        "algorithm": "c",
+        "random": "c",
+        "limits.h": "c"
+    }
+}
