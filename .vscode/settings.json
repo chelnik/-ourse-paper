@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "s21_matrix.h": "c",
+        "matrix.h": "c",
         "__locale": "c",
         "functional": "c",
         "string.h": "c",

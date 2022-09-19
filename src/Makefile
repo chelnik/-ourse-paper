@@ -1,4 +1,4 @@
-NAME	=	s21_matrix.a
+NAME	=	matrix.a
 
 SRC = otherMatrixFunctions.c mainFunctions.c
 SRCALL = otherMatrixFunctions.c mainFunctions.c aditionalFunctions.c
@@ -13,7 +13,7 @@ FLAGS_PLATFORM = -lcheck
 
 
 
-.PHONY: all clean test s21_matrix.a
+.PHONY: all clean test matrix.a
 # http://linux.yaroslavl.ru/docs/prog/gnu_make_3-79_russian_manual.html#:~:text=bar%20%3A%3D%20%24(foo%3A%25.o%3D%25.c)
 
 all: $(NAME)
@@ -36,7 +36,7 @@ test:
 	@make clean
 
 clean:
-	@rm -rf *.o *.so *.gcda *.gcno *.gch rep.info *.html *.css report *.txt *.info *.dSYM *.out
+	@rm -rf *.o *.so *.gcda *.gcno *.gch rep.info *.html *.css report *.info *.dSYM *.out
 
 fclean: clean
 	@rm -f $(NAME)
