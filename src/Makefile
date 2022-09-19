@@ -32,7 +32,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 test:
 	@make clean
-	@gcc -g $(CFLAGS) main.c $(SRCALL) && ./a.out
+	gcc -g $(CFLAGS) main.c $(SRCALL) && ./a.out
 	@make clean
 
 clean:
