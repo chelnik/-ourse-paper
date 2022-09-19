@@ -1,6 +1,7 @@
-#ifndef SRC_S21_MATRIX_H_
+#ifndef SRC_S21_MATRIX_H_ 
 #define SRC_S21_MATRIX_H_
-
+// выше защита  от повторного включения заголовочных файлов
+// https://ru.stackoverflow.com/questions/483235/%D0%97%D0%B0%D1%87%D0%B5%D0%BC-%D0%BF%D0%B8%D1%88%D1%83%D1%82-ifndef-file-h-%D0%B2-%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%B0
 #include <limits.h>
 #include <math.h>
 #include <stdio.h>
@@ -15,6 +16,7 @@
 #define FAILURE 0
 
 #define EPS 1e-7
+
 typedef struct matrix_struct {
     double** matrix;
     int rows;
@@ -29,13 +31,8 @@ int s21_sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
 int s21_sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
 int s21_mult_number(matrix_t *A, double number, matrix_t *result);
 int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
-int s21_transpose(matrix_t *A, matrix_t *result);
-int s21_determinant(matrix_t *A, double *result);
-void minor_matrix(matrix_t *A, matrix_t *result, int row, int column);
-int s21_calc_complements(matrix_t *A, matrix_t *result);
-int s21_inverse_matrix(matrix_t *A, matrix_t *result);
 
-double second_minor(matrix_t *A);
+
 void set_zero(matrix_t *A);
 void printer(matrix_t A);
 void placeholder(matrix_t *A);

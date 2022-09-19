@@ -1,49 +1,39 @@
-
-OS := $(shell uname -s)
 NAME	=	s21_matrix.a
 
-SRC = createMatrix.c
-SRCALL = createMatrix.c aditionalFunctions.c
+SRC = otherMatrixFunctions.c mainFunctions.c
+SRCALL = otherMatrixFunctions.c mainFunctions.c aditionalFunctions.c
 OBJ		=	$(SRC:%.c=%.o)
 
 CC 		= gcc -std=c11
 
 CFLAGS	= -Wall -Wextra -Werror
 
-# TEST = test_andry.c
-# TEST = test_gleb.c
-TEST = test_serega.c
+TEST = main.c
 FLAGS_PLATFORM = -lcheck
 
-GCOVFLAGS = -fprofile-arcs -ftest-coverage
-REPORT = GcovReport
-# Переменная для тестов отдельно под систему мак и линукс
-ifeq ($(OS), Darwin)
-	FLAGS_PLATFORM = -lcheck
-else
-	FLAGS_PLATFORM = -lcheck -lsubunit -lrt -lm -lpthread -g
-endif
 
-.PHONY: all clean test s21_matrix.a gcov_report
+
+.PHONY: all clean test s21_matrix.a
+# http://linux.yaroslavl.ru/docs/prog/gnu_make_3-79_russian_manual.html#:~:text=bar%20%3A%3D%20%24(foo%3A%25.o%3D%25.c)
 
 all: $(NAME)
 
 # Сборка библиотеки
+# все что после двоеточия это пререквизиты
+# $? означает что если пререквезиты новее чем цель то он использует только те пререквизиты которые обновились
 $(NAME): $(OBJ) $(HEADER)
-	@ar rcs $(NAME) $?
-	@rm -f *.o
+	ar rcs $(NAME) $?
+	rm -f *.o
 
+# $< берет первый пререквизит в данном случае %.c и переименовывает в $@ который обращается
+# к %.o и переименовывает в %.o
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-testing:
+test:
 	@make clean
 	@gcc -g $(CFLAGS) main.c $(SRCALL) && ./a.out
 	@make clean
-
-test:
-	@gcc $(CFLAGS) $(TEST) $(SRC) $(FLAGS_PLATFORM) -o tests.out
-	@./tests.out
 
 clean:
 	@rm -rf *.o *.so *.gcda *.gcno *.gch rep.info *.html *.css report *.txt *.info *.dSYM *.out
@@ -57,22 +47,6 @@ lint:
 	@python3 ./../materials/linters/cpplint.py --extensions=c *.c *.h
 	@rm -f CPPLINT.cfg
 
-gcov_report:
-	gcc $(GCOVFLAGS) $(TEST) $(SRC) $(FLAGS_PLATFORM) -o $(REPORT)
-	chmod +x *
-	./GcovReport
-	lcov -t "$(REPORT)" -o $(REPORT).info -c -d .
-	genhtml -o report $(REPORT).info
-	rm -rf ./*.gcno ./*.gcda ./$(REPORT).*
-	open ./report/index.html
-	rm $(REPORT)
-	rm -rf *.dSYM
-
-valgrind: $(NAME)
-	@echo -------------------MEMORY_LEAKS-------------------
-	@echo $(CC) -g $(TEST) $(NAME) $(FLAGS_PLATFORM) -o unit.out
-	@echoCK_FORK=no valgrind --leak-check=full -s ./unit.out	
-
 check: $(NAME)
 	@echo ---------------------CPPCHECK---------------------
 	cppcheck *.h $(SRC)
@@ -84,7 +58,5 @@ check: $(NAME)
 	$(CC) -g $(TEST) $(NAME) $(FLAGS_PLATFORM) -o unit.out
 	CK_FORK=no leaks --atExit -- ./unit.out
 
-# rebuild
-# re: clean test
 
 
