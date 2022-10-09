@@ -14,8 +14,7 @@ void scanMatrix(FILE *file, matrix_t *result);
 
 void remover(matrix_t *A, matrix_t *B, matrix_t *result);
 
-void workWithTwoMatrix(FILE *file, int rows, int cols,
-                       char operations);
+void workWithTwoMatrix(FILE *file, int rows, int cols, char operations);
 
 void workWithNumber(FILE *file, int rows, int cols, int mulNumber);
 
@@ -29,12 +28,13 @@ void scanner() {
 
     if (file == NULL) {
         printf("no such file.");
-    }
-    int numOfMatrix = 0;
-    fscanf(file, "%d\n", &numOfMatrix);
+    } else {
+        int numOfMatrix = 0;
+        fscanf(file, "%d\n", &numOfMatrix);
 
-    matrixScanner(file, numOfMatrix);
-    fclose(file);
+        matrixScanner(file, numOfMatrix);
+        fclose(file);
+    }
 }
 
 int getSisn(FILE *file, char *operations, int *mulNumber) {
@@ -51,10 +51,9 @@ int getSisn(FILE *file, char *operations, int *mulNumber) {
         }
     } else if (str[0] == '+') {
         sscanf(str, "%c", operations);
-
     }
     return 0;
-//    printf("%s", str);
+    //    printf("%s", str);
 }
 
 int matrixScanner(FILE *file, int numOfMatrix) {
@@ -158,7 +157,7 @@ void testBase() {
     placeholder_for_inverse_high(&A);
     printer(A);
 
-//    printer(result);
+    //    printer(result);
 }
 // rows строка
 // columns столбик
