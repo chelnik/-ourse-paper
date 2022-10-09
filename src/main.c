@@ -37,7 +37,7 @@ void scanner() {
     }
 }
 
-int getSisn(FILE *file, char *operations, int *mulNumber) {
+int getSign(FILE *file, char *operations, int *mulNumber) {
     char str[30] = "";
     fgets(str, 256, file);
     if (str[0] == '*') {
@@ -62,7 +62,7 @@ int matrixScanner(FILE *file, int numOfMatrix) {
         char operations = 0;
         int mulNumber = 0;
         // fscanf(file, "%c\n", &operations);  // взятие знака
-        if (getSisn(file, &operations, &mulNumber)) {
+        if (getSign(file, &operations, &mulNumber)) {
             // тогда это умножение на число
             workWithNumber(file, rows, cols, mulNumber);
         } else {
