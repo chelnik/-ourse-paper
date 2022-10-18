@@ -40,22 +40,23 @@ void scanner() {
 int getSign(FILE *file, char *operations, int *mulNumber) {
     char str[30] = "";
     fgets(str, 256, file);
+    int flag = 0;
     if (str[0] == '*') {
         if (str[2] > 0) {
             // тогда это умножение на число
             sscanf(str, "%c %d", operations, mulNumber);
-            // printf("%c %d\n", operations, mulNumber);
-            return ISNUM;
+            flag = ISNUM;
         } else {
             sscanf(str, "%c", operations);
         }
     } else if (str[0] == '+') {
         sscanf(str, "%c", operations);
     }
-    return 0;
-    //    printf("%s", str);
+    return flag;
 }
 
+// получчение знака в матрице
+// и направление в необходимую функцию
 int matrixScanner(FILE *file, int numOfMatrix) {
     for (int i = 0; i < numOfMatrix; i++) {
         int rows = 0, cols = 0;
@@ -131,7 +132,7 @@ void scanMatrix(FILE *file, matrix_t *result) {
         for (int k = 0; k < result->columns; k++) {
             int number;
             if (k == result->columns - 1) {
-                fscanf(file, "%d\n", &number);
+                fscanf(маfile, "%d\n", &number);
             } else {
                 fscanf(file, "%d ", &number);
             }
@@ -139,16 +140,6 @@ void scanMatrix(FILE *file, matrix_t *result) {
         }
     }
 }
-// пока не конец файла или не ошибка
-// функция которая
-//  читает из файла знак
-// размер первой матрицы
-// первую матрицу
-// размер второй матрицы
-// вторую матрицу
-// вызывается функция
-//
-// выход из файла и закрытие
 
 // rows строка
 // columns столбик
