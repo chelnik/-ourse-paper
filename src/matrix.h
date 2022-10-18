@@ -33,10 +33,10 @@ int mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result);
 
 void set_zero(matrix_t *A);
 void printer(matrix_t A);
-void placeholder(matrix_t *A);
-void placeholder_new(matrix_t *A);
-void placeholder_for_inverse(matrix_t *A);
-void placeholder_for_inverse_high(matrix_t *A);
+// void placeholder(matrix_t *A);
+// void placeholder_new(matrix_t *A);
+// void placeholder_for_inverse(matrix_t *A);
+// void placeholder_for_inverse_high(matrix_t *A);
 void copy_matrix(matrix_t *A, matrix_t *result);
 
 #endif  // SRC_MATRIX_H_

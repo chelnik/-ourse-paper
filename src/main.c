@@ -150,14 +150,5 @@ void scanMatrix(FILE *file, matrix_t *result) {
 //
 // выход из файла и закрытие
 
-void testBase() {
-    matrix_t A;
-    create_matrix(4, 4, &A);
-
-    placeholder_for_inverse_high(&A);
-    printer(A);
-
-    //    printer(result);
-}
 // rows строка
 // columns столбик
